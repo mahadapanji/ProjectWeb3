@@ -13,7 +13,7 @@
  ?>
   	<div class="container">
 	  	<div class="card">
-		  <h5 class="card-header bg-info text-white mt-3">Departemen</h5>
+		  <h5 class="card-header bg-info text-white mt-3">Data Departemen</h5>
 		  <div class="card-body">
 		  	<a href="?halaman=arsip&hal=tambahdata" class="btn btn-success mb-3">Tambah Data</a>
 		  	<table class="table table-borderd table-hovered table-striped">
