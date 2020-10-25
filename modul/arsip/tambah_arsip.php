@@ -1,17 +1,52 @@
 	<?php 
 	include 'config/upload.php';
 
+	if (isset($_GET['hal'])) {
+		# code...
+		if ($_GET['hal']=="edit") {
+			# code...
+			$tampil = mysqli_query($koneksi, "SELECT tbl_arsip.*,
+													 tbl_departemen.nama_departemen,
+													 tbl_pengirim_surat.nama_pengirim
+											  From tbl_arsip,tbl_departemen,tbl_pengirim_surat
+														 where tbl_arsip.id_departemen = tbl_departemen.id_departemen AND tbl_arsip.id_pengirim = tbl_pengirim_surat.id_pengirim AND id_arsip = '$_GET[id]'");
+			$data = mysqli_fetch_array($tampil);
+			if ($data) {
+				# code...
+				$vno_surat = $data['no_surat'];
+				$vtanggal_surat = $data['tanggal_surat'];
+				$vtanggal_terima = $data['tanggal_diterima'];
+				$vperihal = $data['perihal'];
+				$vnama_departemen = $data['nama_departemen'];
+				$vnama_pengirim = $data['nama_pengirim'];
+				$vid_departemen = $data['id_departemen'];
+				$vid_pengirim = $data['id_pengirim'];
+				$vfile = $data['file'];			
+			}
+		
+	}
+}
+
 	if (isset($_POST['bsimpan'])) {
 		# code...
 		if ($_GET['hal']=="edit") {
 			# code...
+			if ($_FILES['file']['error']===4) {
+				# code...
+				$file = $vfile;
+			}else {
+				# code...
+				$file = upload();
+			}
+
+
 			$ubah = mysqli_query($koneksi, "UPDATE tbl_arsip set no_surat = '$_POST[no_surat]',
 															tanggal_surat = '$_POST[tanggal_surat]',
 															tanggal_diterima = '$_POST[tanggal_diterima]',
 															perihal = '$_POST[perihal]',
 															id_departemen = '$_POST[id_departemen]',
 															id_pengirim = '$_POST[id_pengirim]',
-															file = '$_POST[file]' 
+															file = '$file'
 															where 
 															id_arsip = '$_GET[id]' ");
 			if ($ubah) {
@@ -41,31 +76,7 @@
 		}
 	}
 
-	if (isset($_GET['hal'])) {
-		# code...
-		if ($_GET['hal']=="edit") {
-			# code...
-			$tampil = mysqli_query($koneksi, "SELECT tbl_arsip.*,
-													 tbl_departemen.nama_departemen,
-													 tbl_pengirim_surat.nama_pengirim
-											  From tbl_arsip,tbl_departemen,tbl_pengirim_surat
-														 where tbl_arsip.id_departemen = tbl_departemen.id_departemen AND tbl_arsip.id_pengirim = tbl_pengirim_surat.id_pengirim AND id_arsip = '$_GET[id]'");
-			$data = mysqli_fetch_array($tampil);
-			if ($data) {
-				# code...
-				$vno_surat = $data['no_surat'];
-				$vtanggal_surat = $data['tanggal_surat'];
-				$vtanggal_terima = $data['tanggal_diterima'];
-				$vperihal = $data['perihal'];
-				$vnama_departemen = $data['nama_departemen'];
-				$vnama_pengirim = $data['nama_pengirim'];
-				$vid_departemen = $data['id_departemen'];
-				$vid_pengirim = $data['id_pengirim'];
-				$vfile = $data['file'];			
-			}
-		
-	}
-}
+
 	?>
 	
 
