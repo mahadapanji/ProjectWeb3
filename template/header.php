@@ -1,3 +1,23 @@
+<?php
+
+
+session_start();
+if(empty($_SESSION['username']) and empty($_SESSION['id_user']))
+{
+    echo "<script>
+    alert('Login Terlebih dahulu');
+    document.location='index.php';
+    </script>";
+}
+$tampil = mysqli_query($koneksi, "SELECT * FROM tbl_user where id_user= '$_SESSION[id_user]' ");
+$data = mysqli_fetch_array($tampil);
+if ($data) {
+    $vadmin = $_SESSION['username'];
+
+}
+?>
+
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -30,10 +50,7 @@
                     <a class="nav-link" href="?halaman=arsip">Data Arsip Surat</a>
                 </li>
                 </ul>
-                <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
+                <h6 class="text-white">Welcome Admin : <?=$vadmin?></h6>
             </div>
           </div>
         </nav>
