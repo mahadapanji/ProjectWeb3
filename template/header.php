@@ -2,7 +2,7 @@
 
 
 session_start();
-if(empty($_SESSION['username']) and empty($_SESSION['id_user']))
+if(empty($_SESSION['username']) or empty($_SESSION['id_user']))
 {
     echo "<script>
     alert('Login Terlebih dahulu');
