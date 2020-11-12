@@ -27,6 +27,7 @@ if ($data) {
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <title>e - arsip</title>
      <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
          <div class="container" >
