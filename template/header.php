@@ -56,3 +56,4 @@ if ($data) {
         </nav>
 
   </head>
+  <body>
